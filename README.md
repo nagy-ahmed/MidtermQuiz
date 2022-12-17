@@ -9,14 +9,16 @@ The Task is a simple application of oop in java
 ![Quiz Image](https://user-images.githubusercontent.com/77116125/208266274-10a73eac-067a-41a5-8c30-06a163addebf.png)
 
 
-## Jar
-jar file is also attached
-###### To run it 
-use this command
+## _Jar_
+###### To run it use this command
+
+```bash
+java -jar midtermquiz.jar
+```
+#### or
 ```bash
 java --enable-preview -jar midtermquiz.jar
 ```
-
 
 ## Contributing
 
