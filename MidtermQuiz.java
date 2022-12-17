@@ -1,4 +1,3 @@
-import java.io.EOFException;
 import java.util.Scanner;
 
 interface Shape {
@@ -9,13 +8,13 @@ interface Shape {
 }
 
 interface TwoDimentionShape extends Shape {
-    int dimension_type = 2;
+    String dimension_type = "Two";
 
     void SetDimension(double d);
 }
 
 interface ThreeDimentionShape extends Shape {
-    int dimension_type = 3;
+    String dimension_type = "Three";
 
     void SetDimension(double d);
 }
@@ -123,7 +122,10 @@ public class MidtermQuiz {
                 error = true;
                 value = 0;
             }
+
         } while (error);
+        s.close();
+
         return value;
     }
 
@@ -145,9 +147,9 @@ public class MidtermQuiz {
     public static void main(String[] args) {
         // #region Object Allocation
         Circle circle = new Circle();
-        Square square = new Square();
-        Sphere sphere = new Sphere();
-        Cube cube = new Cube();
+        // Square square = new Square();
+        // Sphere sphere = new Sphere();
+        // Cube cube = new Cube();
         // #endregion
         int ch = ShowMenu();
         switch (ch) {
