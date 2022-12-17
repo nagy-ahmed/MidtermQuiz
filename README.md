@@ -4,7 +4,7 @@ This task is for my midterm of java course
 ## Description
 
 Task is to make interface and inherit it to other interface and to make classes implement interfaces.
-The Task is a simple applied of oop in java
+The Task is a simple application of oop in java
 ![Quiz Image](https://user-images.githubusercontent.com/77116125/208266274-10a73eac-067a-41a5-8c30-06a163addebf.png)
 
 
