@@ -36,6 +36,14 @@ class Circle implements TwoDimentionShape {
     public double Area() {
         return 3.14 * r * r;
     }
+
+    public static void Cal() {
+        Circle circle = new Circle();
+        circle.GetDimensionType();
+        System.out.println(Color.YELLOW + "Plz Enter Circle Radius" + Color.RESET);
+        circle.SetDimension(MidtermQuiz.EnteredValue());
+        System.out.println("Circle Area = " + circle.Area());
+    }
 }
 
 class Square implements TwoDimentionShape {
@@ -54,6 +62,14 @@ class Square implements TwoDimentionShape {
     @Override
     public double Area() {
         return l * l;
+    }
+
+    public static void Cal() {
+        Square square = new Square();
+        square.GetDimensionType();
+        System.out.println(Color.YELLOW + "Plz Enter Square Length" + Color.RESET);
+        square.SetDimension(MidtermQuiz.EnteredValue());
+        System.out.println("Square Area = " + square.Area());
     }
 }
 
@@ -74,6 +90,14 @@ class Sphere implements ThreeDimentionShape {
     public double Area() {
         return 4 * 3.14 * r * r;
     }
+
+    public static void Cal() {
+        Sphere sphere = new Sphere();
+        sphere.GetDimensionType();
+        System.out.println(Color.YELLOW + "Plz Enter Sphere Radius" + Color.RESET);
+        sphere.SetDimension(MidtermQuiz.EnteredValue());
+        System.out.println("Sphere Area = " + sphere.Area());
+    }
 }
 
 class Cube implements ThreeDimentionShape {
@@ -93,17 +117,28 @@ class Cube implements ThreeDimentionShape {
     public double Area() {
         return 6 * l * l;
     }
+
+    public static void Cal() {
+        Cube cube = new Cube();
+        cube.GetDimensionType();
+        System.out.println(Color.YELLOW + "Plz Enter Cube Length" + Color.RESET);
+        cube.SetDimension(MidtermQuiz.EnteredValue());
+        System.out.println("Cube Area = " + cube.Area());
+    }
 }
 
-public class MidtermQuiz {
+class Color {
     public static final String RESET = "\u001B[0m";
     public static final String RED = "\u001B[31m";
     public static final String GREEN = "\u001B[32m";
     public static final String YELLOW = "\u001B[33m";
     public static final String BLUE = "\u001B[34m";
 
+}
+
+public class MidtermQuiz {
     // this function is used to scan value from user
-    // validate the value not to be string or other value else 1,2,3,4
+    // validate the value not to be string
     public static double EnteredValue() {
         Scanner s = new Scanner(System.in);
         double value = 0;
@@ -113,55 +148,66 @@ public class MidtermQuiz {
                 System.out.print("-->");
                 value = s.nextDouble();
                 error = false;
-                if (value != 1 && value != 2 && value != 3 && value != 4) {
-                    throw new Exception();
-                }
+
             } catch (Exception e) {
-                System.out.println(RED + "Value Entered is a invalid value" + RESET);
+                System.out.println(Color.RED + "Value Entered is a invalid value" + Color.RESET);
                 s.nextLine();
                 error = true;
                 value = 0;
             }
 
         } while (error);
-        s.close();
 
         return value;
     }
 
+    // choose value from 1 to 4 each belongs to diffrent shape
     public static int ShowMenu() {
-        int ch;
+        int ch = 0;
+        System.out.println("Plz Choose Shape You want to calc its area");
+        System.out.println("1) Circle ");
+        System.out.println("2) Square ");
+        System.out.println("3) Sphere ");
+        System.out.println("4) Cube ");
         do {
-            System.out.println(BLUE + "\nWelcome" + RESET);
-            System.out.println("Plz Enter Shape You want to calc its area");
-            System.out.println("1) Circle ");
-            System.out.println("2) Square ");
-            System.out.println("3) Sphere ");
-            System.out.println("4) Cube ");
             ch = (int) EnteredValue();
-
+            if (ch != 1 && ch != 2 && ch != 3 && ch != 4) {
+                System.out.println(Color.RED + "Your choose not Exist\nPlz Enter another value" + Color.RESET);
+            }
         } while (ch != 1 && ch != 2 && ch != 3 && ch != 4);
+
         return ch;
     }
 
-    public static void main(String[] args) {
-        // #region Object Allocation
-        Circle circle = new Circle();
-        // Square square = new Square();
-        // Sphere sphere = new Sphere();
-        // Cube cube = new Cube();
-        // #endregion
-        int ch = ShowMenu();
-        switch (ch) {
-            case 1:
-                circle.GetDimensionType();
-                System.out.println("Plz Enter Circle Radius");
-                circle.SetDimension(ch);
-                System.out.println("Circle Area of");
-                break;
+    public static void DoCore() {
+        boolean again = false;
+        do {
+            switch (ShowMenu()) {
+                case 1:
+                    Circle.Cal();
+                    break;
+                case 2:
+                    Square.Cal();
+                    break;
+                case 3:
+                    Sphere.Cal();
+                    break;
+                case 4:
+                    Cube.Cal();
+                    break;
+                default:
+                    System.out.println("MidtermQuiz.main()");
+                    break;
+            }
+            System.out.println(Color.YELLOW + "Do you want to calc else? \n1)Yes\n0)N0" + Color.RESET);
+            again = EnteredValue() == 1 ? true : false;
+        } while (again);
+    }
 
-            default:
-                break;
-        }
+    public static void main(String[] args) {
+        System.out.println(Color.BLUE + "\nWelcome" + Color.RESET);
+        DoCore();
+        System.out.println(Color.GREEN + "GoodBye (:");
+
     }
 }
